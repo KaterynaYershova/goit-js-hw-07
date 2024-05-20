@@ -25,20 +25,12 @@ const images = [
   },
 ];
 
-document.addEventListener("DOMContentLoaded", function () {
-  const gallery = document.querySelector(".gallery");
+const gallery = document.querySelector(".gallery");
 
-  const galleryItems = images.map((image) => {
-    const li = document.createElement("li");
-    li.classList.add("gallery-item");
-    const img = document.createElement("img");
-    img.src = image.url;
-    img.alt = image.alt;
-    li.appendChild(img);
-    return li;
-  });
+const galleryItems = images
+  .map(({ url, alt }) => {
+    return `<li><img src="${url}" alt="${alt}"></li>`;
+  })
+  .join("");
 
-  galleryItems.forEach((item) => {
-    gallery.appendChild(item);
-  });
-});
+gallery.insertAdjacentHTML("beforeend", galleryItems);
